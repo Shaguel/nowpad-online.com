@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en" style="display: flex;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ganancia Online</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Press+Start+2P&family=Roboto:wght@900&display=swap');
+        :root {
+            --blue: #007bff;
+            --indigo: #6610f2;
+            --purple: #6f42c1;
+            --pink: #e83e8c;
+            --red: #dc3545;
+            --orange: #fd7e14;
+            --yellow: #ffc107;
+            --green: #28a745;
+            --teal: #20c997;
+            --cyan: #17a2b8;
+            --white: #fff;
+            --gray: #6c757d;
+            --gray-dark: #343a40;
+            --primary: #5533ff;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #f5f5f5;
+            --breakpoint-xs: 0;
+            --breakpoint-sm: 576px;
+            --breakpoint-md: 768px;
+            --breakpoint-lg: 992px;
+            --breakpoint-xl: 1200px;
+            --breakpoint-xxl: 1440px;
+            --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+        }
+                    
+        *,*::before,*::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: sans-serif;
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0,0,0,0)
+        }
+        header{
+            position: fixed; /* Make header fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: black; /* Add background color */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow for separation */
+
+        }
+        body {
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            font-size: 1rem;
+            scroll-behavior: smooth;
+            position: relative;
+            padding-top: 60px; /* Ajusta según la altura del encabezado */
+            margin: 0;
+        }
+        header > h2{
+            margin-left: 50px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .header-items{
+            display: flex;
+            gap: 20px;
+            margin-right: 70px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+        }
+        .header-help:hover{
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+        .header-about-us:hover{
+            font-size: 1.3rem;
+        }
+        .header-blog:hover{
+            font-size: 1.3rem;
+        }
+        .header-wallpaper{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+        }
+        .header-wallpaper:hover{
+            font-size: 1.3rem;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .bar {
+            background-color: #fff;
+            height: 3px;
+            width: 25px;
+            margin: 3px 0;
+        }
+        header span {
+        color: #31e083;
+        }
+
+        .body-container{
+            box-sizing: border-box;
+        }
+        .h-items{
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Contenidos */
+                /* Estilos para la tabla de contenidos */
+        .ez-toc-container {
+            background-color: transparent;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 50px 50px 0 50px;
+            margin-top: 150px;
+            margin-bottom: 200px;
+        }
+
+        .ez-toc-title-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .ez-toc-title {
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+            color: #182e3a;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin: 30px 10px;
+        }
+
+        .contenido-page{
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .contenido-page:hover {
+            text-decoration: underline;
+            color: #555;
+        }
+
+
+        /* Título e imagen */
+        .title-container{
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            grid-template-rows: 1fr;
+            border-bottom: 10px solid black;
+        }
+        .main-title{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            padding: 86px;
+            font-family: 'Roboto', sans-serif;
+            color: black;
+            text-align: center;
+        }
+        .money-img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* subtile container */
+
+        .main-cards {
+            margin: 50px 50px 0 50px;
+            display: flex;
+            flex-direction: row;
+        }
+        .tile-image{
+            height: 250px;
+            float: left;
+            margin-right: 50px;
+        }
+        .card{
+            width: 100%;
+        }
+        .left-card{
+            float: left;
+        }
+        .right-card{
+            float: right;
+        }
+        .card-text{
+            font-size: 1.5rem;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        }
+
+        /* All page */
+        .main{
+            align-items: flex-start;
+        }
+        .wrap{
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+        .flex{
+            display: flex;
+            justify-content: space-between;
+        }
+        .left{
+            min-width: 200px;
+        }
+        .main .page{
+            width: 100%;
+            margin-top: 100px;            
+        }
+        .page > img{
+            width: 100%;
+            position: relative;
+        }
+        .left{
+            min-width: 340px;
+            max-width: 340px;
+        }
+        .right{
+            min-width: 340px;
+            max-width: 340px;
+        }
+        .page > h2{
+            margin-top: 50px;
+        }
+
+        .title-number{
+            margin-right: 20px;
+            background-color: rgb(51, 52, 63);
+            color: white;
+            padding: 5px 15px 5px 15px;
+        }
+        .body-container > h2{
+            font-size: 3rem;
+            color: var(--teal);
+        }
+        .body-container > h2, h4{
+            font-family: 'Roboto', sans-serif;
+                   
+        }
+        
+        .body-container > h4{
+            display: flex;
+            justify-content: center;
+            font-size: 22px;
+            padding-bottom: 30px;
+        }
+        .body-container .text-body{
+            font-size: 1.5rem;
+            font-family: sans-serif;
+        }
+        .text-body{
+            padding-bottom: 30px;
+        }
+
+        a{
+            text-decoration: none;
+        }
+        .sponsor-banner{
+            margin-top: 610vh;
+        }
+        .carbonad span{
+            position: relative;
+            display: none;
+            overflow: hidden;
+        }
+        .carbonad a{
+            color: inherit;
+            text-decoration: none;
+            padding: 8px 0;
+        }
+        .carbon-img{
+            display: block;
+            margin: 0 auto;
+            line-height: 1;
+            box-sizing: border-box;
+        }
+        .carbon-img img{
+            display: block;
+            height: 50%;
+            margin: 0 auto;
+            line-height: 1;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .carbon-wrap{
+            text-align: center;
+            margin-top: 100%;
+        }
+
+        .carbon-wrap > h2{
+            font-size: 3rem;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .carbon-wrap > h3{
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+        }
+        .link-afiliados{
+            color: var(--teal);
+            font-weight: bold;
+        }
+
+        /*Volver hacía arriba*/
+        .black-mode{
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background-color: black;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+        .black-mode img{
+            width: 30px;
+            height: 30px;
+            display: block;
+            margin: auto;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: black;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .scroll-to-top img {
+            width: 30px;
+            height: 30px;
+            display: block;
+            margin: auto;
+        }
+
+        .dark-mode {
+            background-color: #111; /* Fondo oscuro */
+            color: #fff; /* Texto claro */
+            /* ... (otros estilos oscuros) ... */
+            
+        }
+        .dark-mode .main-title{
+            background-color: #111; /* Fondo oscuro */
+            color: #fff; /* Texto claro */
+            /* ... (otros estilos oscuros) ... */
+            
+        }
+
+        .dark-mode .ez-toc-title{
+            background-color: #111; /* Fondo oscuro */
+            color: #fff; /* Texto claro */
+            /* ... (otros estilos oscuros) ... */
+            
+        }
+        .dark-mode .contenido-page{
+            background-color: #111; /* Fondo oscuro */
+            color: #fff; /* Texto claro */
+            /* ... (otros estilos oscuros) ... */
+            
+        }
+        .dark-mode .title-container{
+            border-bottom: 10px solid white;
+        }
+
+
+
+        /* Footer */
+
+        footer{
+            margin-top: 80px;
+            height: 100px;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+
+        } 
+
+        /* Ajustes para mejorar la legibilidad */
+
+        /* Mobiles Devices */
+        @media (min-width: 319px) and (max-width: 1200px){
+
+            .main, .page{
+                padding: 30px;
+            }
+            
+            .title-container{
+                display: flex;
+                flex-direction: column;
+                margin-top: 68px;
+            }
+            .money-img{
+                display: none;
+            }
+
+            .left-card{
+                display: flex;
+                flex-direction: column;
+            }
+            .tile-image{
+                height: auto;
+                margin: 0;
+                width: 100%;
+            }
+            .main-cards {
+                margin: 0;
+                display: flex;
+                flex-direction: row;
+            }
+            .card-text{
+                font-size: 2.2rem;
+                padding: 50px;
+            }
+            .body-container > h4{
+                font-size: 3rem !important;
+                display: flex;
+                flex-direction: column;
+            }
+            .body-container > h2{
+                font-size: 3.2rem !important;
+                margin-top: 25vh;
+            }
+            .text-body{
+                font-size: 1.7rem !important;
+            }
+            .ez-toc-container{
+                margin: 0 !important;
+                font-size: 1.5rem;
+            }
+            .ez-toc-title{
+                font-size: 5rem;
+            }
+            .header-items {
+                display: none;
+                flex-direction: column;
+                font-size: 2rem !important;
+                padding: 40px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .header-items.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: flex;
+                margin-right: 50px;
+            }
+            header > h2{
+                margin-left: 47px;
+                font-size: 3rem !important;
+
+            }
+            .bar{
+                height: 10px;
+                width: 54px;
+            }
+            .main-title{
+                font-size: 3rem;
+            }
+            .lista-de-contenidos{
+                font-size: 2.5rem;
+            }
+            .footer > h2{
+                display: none;
+            }
+            .scroll-to-top img {
+                width: 100px; /* Ajusta el tamaño según tus preferencias */
+                height: 100px; /* Ajusta el tamaño según tus preferencias */
+                display: block;
+                margin: auto;
+            }
+            .scroll-to-top {
+                background-color: rgb(255, 255, 255);
+            }
+            .contenido-page{
+                font-size: 2rem;
+            }
+            .black-mode {
+                position: fixed;
+                bottom: 159px;
+                right: 25px;
+                background-color: black;
+                padding: 16px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .dark-mode-button{
+                padding: 50px;
+                font-size: 2rem;
+                color: white;
+            }
+            
+
+
+        }
+        /* Ipad and tables devices*/
+        @media (min-width: 481px) and (max-width: 1200px){
+            .flex{
+                display: block;
+            }
+            .main, .page{
+                padding: 40px;
+            }
+            .text-body{
+                font-size: 2rem !important;
+            }
+            .body-container > h2{
+                font-size: 3rem !important;
+            }
+
+        }
+        /*Laptop size*/
+        @media (min-width: 1201px) and (max-width: 1600px){
+            body{
+                background-color: transparent;
+            }
+        }
+        /*Desktop size*/
+        @media (min-width: 1601){
+            body{
+                background-color: green;
+            }
+        }
+
+
+
+
+        /* Eliminar .right y .left en pantallas pequeñas */
+        @media screen and (max-width: 600px) {
+            .right, .left {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Tu HTML existente -->
+    <header>
+        <h2>Ganancia <span>Online</span> .com</h2>
+
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <div class="header-items">
+            <a class="h-items"  href="ayuda.html"><p class="header-help" id="boton-ayuda">Ayuda</p></a>
+            <a class="h-items"  href="sobre-nosotros.html"><p class="header-about-us">Sobre nosotros</p></a>
+            <a id="wallpaper-button" class="h-items"><p class="header-wallpaper">Wallpapers</p></a>
+        </div>
+
+    </header>
+
+    <div class="all-title-container">
+        <div class="title-container">
+
+            <div class="main-img">
+                <img class="money-img" src="destino-poster-horizontal.png" alt="main money image freelance">
+            </div>
+
+            <div class="main-title">
+                <h2>Las Mejores Formas De Ganar Dinero En Internet</h2>
+            </div>
+
+        </div>
+    </div>
+    <div class="footer">
+        <h2 style="text-align: center;font-weight: normal; margin-top: 60px; margin-bottom: 100px;">A Oficial NowPad Company Blog</h2>
+    </div>
+
+    <div class="main-cards">
+        <div class="left-card card"><img class="tile-image" src="destino-poster-horizontal.png" alt="freelance image">
+            <p class="card-text">Tú también puedes transformar tu tiempo en línea en ganancias reales. Desde emprendimientos en línea hasta trabajos freelance, pasando por la monetización de contenido y el comercio electrónico, las oportunidades para ganar dinero en internet son infinitas. ¡Descubre cómo convertir tus habilidades y pasiones en ingresos sólidos desde la comodidad de tu hogar!</p>
+        </div>
+    </div>
+
+    <!--Full Page-->
+    <div class="middle-all-container wrap main flex ">
+
+        <div class="right">
+            <div class="ad">
+                <div class="sponsor-banner">
+                    <div class="carbonad">
+                        <span>
+                            <span class="carbon-wrap">
+                                <h2>Te puede interesar</h2>
+                                <h3>NowPad Wallpapers</h3>
+                                <a href="wallpapers.html" 
+                                class="carbon-img" target="_blank" rel="noopener sponsored" style=" /* height: 100%; */ background: transparent; width: 70%;height: 500px;">
+                                <img src="destino-poster-chica7.png" 
+                                alt="ads via Carbon" border="0" height="100" width="130" style="max-width: 130px;">
+                                <img src="heat-and-flowers-10.png" 
+                                alt="ads via Carbon" border="0" height="100" width="130" style="max-width: 130px;">
+                            
+                            
+                            </a>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--middle page-->
+        <div class="body-container page">
+
+            <div class="ez-toc-container">
+                <nav>
+                    <div class="ez-toc-title-container">
+                        <p class="ez-toc-title">Tabla De Contenidos</p>
+                    </div>
+                    <ul class="lista-de-contenidos">
+                        <li> <a class="contenido-page" href="#one">1- Marketing De Afiliados </a></li>
+                        <li> <a class="contenido-page" href="#two">2- Creación de Contenido en YouTube</a></li>
+                        <li> <a class="contenido-page" href="#three">3- Venta de Productos Artesanales en Etsy</a></li>
+                        <li> <a class="contenido-page" href="#four">4- Trabajos Freelance y Remotos</a></li>
+                        <li> <a class="contenido-page" href="#five">5- Blogging y Publicidad Patrocinada</a></li>
+                        <li> <a class="contenido-page" href="#six">6- Venta de Fotografías en Bancos de Imágenes</a></li>
+                        <li> <a class="contenido-page" href="#seven">7- Creación y Venta De Cursos En Línea</a></li>
+                        <li> <a class="contenido-page" href="#eigth">8- Diseños De Sitios Web y Desarrollo Web</a></li>
+                        <li> <a class="contenido-page" href="#nine">9- Participación en Encuestas en Línea</a></li>
+                        <li> <a class="contenido-page" href="#ten">10- Gestión de Redes Sociales y Marketing Digital</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+
+
+            <h2 id="one"> <span class="title-number">1</span>- Marketing de Afiliados:</h2>
+
+            <div class="text-body">
+                <p>El marketing de afiliados se ha convertido en una estrategia poderosa para generar ingresos en línea. Sin embargo, no basta con solo elegir productos afiliados populares.</p>
+                <p>Es crucial investigar y seleccionar aquellos que resuelvan problemas reales para tu audiencia. Esto no solo aumenta las posibilidades de conversión, sino que también construye confianza a largo plazo.</p>
+                <p>Además, la transparencia es esencial. Debes comunicar claramente a tu audiencia que estás promocionando productos afiliados y proporcionar valor adicional a través de reseñas honestas y contenido informativo.</p>
+                <p>La autenticidad se traduce en lealtad y credibilidad, lo que se traduce en relaciones más sólidas con tus seguidores y mayores ganancias a largo plazo.</p>
+            </div>
+            
+            <h4>Más acerca de Marketin de Afiliados : <a href=""> www.nowpad.com/cursos</a></h4>
+            
+            <img src="1-invertir-en-acciones.jpg" alt="">
+
+            <h2 id="two"><span class="title-number">2</span>- Creación de Contenido en YouTube:</h2>
+            
+            <div class="text-body">
+                <p>El éxito en YouTube va más allá de solo subir videos de alta calidad. Es fundamental tener una estrategia de contenido sólida y consistente.</p>
+                <p> Investiga qué temas resuenan más con tu audiencia y crea un calendario de publicaciones que mantenga el interés y la participación.</p>
+                <p>La interacción con tu audiencia es una de las herramientas más poderosas en tu arsenal. Responder a comentarios y preguntas demuestra tu compromiso y construye una comunidad leal alrededor de tu canal.</p>
+                <p>No subestimes el valor de la autenticidad: los espectadores aprecian la honestidad y la conexión genuina con el creador.</p>
+            </div>
+            
+            <h4>Quieres saber más acerca de cómo generar dinero con Youtube <a href="https://go.hotmart.com/P86935692H"> www.nowpad.com/cursos</a></h4>
+            
+            <img src="2-crear-contenido.jpg" alt="">
+
+            <h2 id="three"><span class="title-number">3</span>- Venta de Productos Artesanales en Etsy: </h2>
+            <!--Voy aquí-->
+            <div class="text-body">
+                <p>La plataforma Etsy ofrece una oportunidad única para los artesanos de todo el mundo. Sin embargo, la competencia puede ser feroz. La presentación de tus productos es clave.</p>
+                <p>Fotografías de alta calidad y descripciones detalladas permiten a los compradores ver el valor y la singularidad de tu trabajo.</p>
+                <p>La participación activa en la comunidad de Etsy no solo aumenta la visibilidad de tus productos, sino que también te conecta con otros creadores y potenciales clientes. Responder rápidamente a las consultas y comentarios demuestra profesionalismo y un compromiso genuino con la satisfacción del cliente.</p>
+            </div>
+            
+            <h4>A través de este link entenderás todo: <a href=""> www.nowpad.com/cursos</a></h4>
+
+            <img src="construction.jpg" alt="">
+            
+            <h2 id="four"><span class="title-number">4</span>- Trabajos Freelance y Remotos:</h2>
+            
+            <div class="text-body">
+                <p>Ofrecer un excelente servicio al cliente y cumplir con los plazos es esencial para construir una sólida reputación en plataformas de trabajo freelance.</p>
+                <p>Además, considera establecer una tarifa competitiva y promocionar tus habilidades en tu perfil.</p>
+            </div>
+            
+            <h4>A través de este link entenderás todo mejor: <a href=""> www.nowpad.com/cursos</a></h4>
+            
+            <img src="aprender-programar-gratis.png" alt="">
+
+            <h2 id="five"><span class="title-number">5</span>- Blogging y Publicidad Patrocinada:</h2>
+
+            <div class="text-body">
+                <p>En el blogging, la consistencia y la autenticidad son clave. Asegúrate de ofrecer contenido único y valioso que resuene con tu audiencia.</p>
+                <p>Para la publicidad patrocinada, selecciona colaboraciones que se alineen con la temática de tu blog y sean relevantes para tus lectores.</p>
+            </div>
+                            
+            <h4>A través de este link entenderás todo mejor: <a href=""> www.nowpad.com/cursos</a></h4>
+            
+            <img src="aprender-programar-gratis.png" alt="">
+
+            <h2 id="six"><span class="title-number">6</span>- Venta de Fotografías en Bancos de Imágenes:</h2>
+            
+            <div class="text-body">
+                <p>Para tener éxito en la venta de fotografías, enfócate en capturar imágenes de alta calidad y en tendencia. Investiga las demandas del mercado y ajusta tu cartera en consecuencia.</p>
+                <p>Además, considera etiquetar y describir tus imágenes de manera precisa para mejorar su visibilidad en las plataformas.</p>
+            </div>
+            
+            <h4>A través de este link entenderás todo mejor: <a href=""> www.nowpad.com/cursos</a></h4>
+            
+            <img src="aprender-programar-gratis.png" alt="">
+
+            <h2 id="seven"><span class="title-number">7</span>- Creación y Venta De Cursos En Línea</h2>
+            
+            <div class="text-body">
+                <p>La clave para un curso en línea exitoso es proporcionar contenido claro y estructurado que resuelva un problema o satisfaga una necesidad específica</p>
+                <p>Interactúa con tus estudiantes y recopila sus comentarios para mejorar el curso con el tiempo.</p>
+            </div>
+            
+            <h4>A través de este link entenderás todo mejor: <a href=""> www.nowpad.com/cursos</a></h4>
+            
+            <img src="aprender-programar-gratis.png" alt="">
+
+            <h2 id="eigth"><span class="title-number">8</span>- Diseños De Sitios Web y Desarrollo Web</h2>
+            
+            <div class="text-body">
+                <p>Para destacarte en el diseño web, enfócate en la usabilidad y el diseño atractivo.</p>
+                <p>Ofrece un servicio al cliente excepcional y mantén actualizadas tus habilidades con las últimas tendencias de diseño y desarrollo web.</p>
+            </div>
+            
+            <h4>A través de este link entenderás todo mejor: <a href=""> www.nowpad.com/cursos</a></h4>
+            
+            <img src="aprender-programar-gratis.png" alt="">
+
+            <h2 id="nine"><span class="title-number">9</span>- Participación en Encuestas en Línea: </h2>
+            
+            <div class="text-body">
+                <p>Regístrate en múltiples plataformas de encuestas para aumentar tus oportunidades de participación.</p>
+                <p>Dedica tiempo a completar perfiles detallados para recibir encuestas que se ajusten a tus intereses y demografía.</p>
+            </div>
+            
+            <h4>A través de este link entenderás todo mejor: <a href=""> www.nowpad.com/cursos</a></h4>
+            
+            <img src="aprender-programar-gratis.png" alt="">
+
+            <h2 id="ten"><span class="title-number">10</span>- Gestión de Redes Sociales y Marketing Digital:</h2>
+            
+            <div class="text-body">
+                <p>Mantente al día con las últimas tendencias y herramientas en redes sociales y marketing digital.</p>
+                <p>Crea estrategias personalizadas para cada cliente y mide regularmente los resultados para optimizar tus campañas.</p>
+                <p>La comunicación efectiva y la capacidad de adaptación son esenciales en este campo en constante evolución.</p>
+            </div>
+            
+            <h4>A través de este link entenderás todo mejor: <a href=""> www.nowpad.com/cursos</a></h4>
+            
+            <img src="aprender-programar-gratis.png" alt="">
+
+            
+        </div>
+
+        <div class="left">
+            <p style="position: absolute; display: none;">A Oficial NowPad Company Blog</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <div class="scroll-to-top" onclick="scrollToTop()">
+            <img src="top-arrow.png" alt="Volver arriba">
+        </div>
+    
+        <div class="black-mode">
+             <p class="dark-mode-button" style="color: white;">Modo <br>Oscuro</p>
+        </div>
+    </div>
+
+    <footer>
+        <p> NowPad Company ® </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const target = document.querySelector(this.getAttribute('href'));
+                    const headerHeight = document.querySelector('header').offsetHeight + 40;
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    const startTime = performance.now();
+                    const duration = 1000; // Duración de la animación en milisegundos
+
+                    function animateScroll(currentTime){
+                        const elapsedTime = currentTime - startTime;
+                        const progress = Math.min(elapsedTime / duration, 1);
+                        const easeInOutCubic = progress < 0.5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+                        window.scrollTo(0, startPosition + (distance * easeInOutCubic));
+
+                        if(progress < 1) {
+                            requestAnimationFrame(animateScroll);
+                        }
+                    }
+
+                    requestAnimationFrame(animateScroll);
+
+                });
+            });
+        });
+
+
+        var objeto_window_referencia;
+        let boton = document.querySelector("#wallpaper-button");
+        var configuracion_ventana =
+        "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
+
+        function abrir_Popup() {
+        objeto_window_referencia = window.open(
+            "wallpapers.html",
+            "wallpaper page",
+            configuracion_ventana,
+        );
+            objeto_window_referencia.opener = null; // Esto evita que la nueva ventana haga referencia a la ventana principal
+
+        }
+
+        boton.addEventListener("click", abrir_Popup)
+
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            var menuItems = document.querySelector('.header-items');
+            menuItems.classList.toggle('active');
+        });
+
+        window.addEventListener('scroll', scrollFunction);
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.querySelector('.scroll-to-top').style.display = "block";
+                document.querySelector('.black-mode').style.display = "block";
+
+            } else {
+                document.querySelector('.scroll-to-top').style.display = "none";
+                document.querySelector('.black-mode').style.display = "none";
+
+            }
+        }
+
+        function scrollToTop() {
+            const currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+            if (currentPosition > 0) {
+                window.requestAnimationFrame(scrollToTop);
+                window.scrollTo(0, currentPosition - currentPosition / 8);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkModeToggle = document.querySelector('.black-mode');
+            const htmlElement = document.querySelector('html');
+
+            darkModeToggle.addEventListener('click', function() {
+                htmlElement.classList.toggle('dark-mode');
+            });
+        });
+
+    </script>
+
+</body>
+</html>
